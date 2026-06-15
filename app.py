@@ -89,7 +89,7 @@ class Game:
 
         self.xp = 0
 
-        self.xp_needed = 5
+        self.xp_needed = 4
 
         self.font = pygame.font.Font(None, 24)
     
@@ -199,13 +199,13 @@ class Game:
     def choose_enemy_type(self):
         seconds = self.game_time / 60
 
-        if seconds < 1:
+        if seconds < 60:
             return 'basic'
 
-        elif seconds < 2:
+        elif seconds < 120:
             return random.choice(['basic', 'basic', 'fast', 'fast'])
 
-        elif seconds < 3:
+        elif seconds < 240:
             return random.choice(['basic','fast', 'fast', 'tank'])
 
         else:
@@ -477,7 +477,7 @@ class Game:
         while self.xp >= self.xp_needed:
             self.xp -= self.xp_needed
             self.level += 1
-            self.xp_needed = int(self.xp_needed * 1.4)
+            self.xp_needed = int(self.xp_needed * 1.3)
             self.start_level_up()
 
     def render_title_screen(self):
@@ -774,12 +774,13 @@ class Game:
                 # spawn enemies
 
                 seconds = self.game_time / 60
+                
 
                 if seconds >= 480:
                     extra_time = seconds - 480
-                    self.enemy_spawn_cooldown = max(15, 60 - int(extra_time / 10))
+                    self.enemy_spawn_cooldown = max(15, 180 - int(extra_time / 8))
                 else:
-                    self.enemy_spawn_cooldown = 60
+                    self.enemy_spawn_cooldown = 200
 
                 self.enemy_spawn_timer += 1
 
@@ -792,17 +793,17 @@ class Game:
             
                 for enemy in self.enemies:
                     enemy.update()
-                    pygame.draw.rect(
-                        self.display,
-                        (0, 255, 0),
-                        (
-                            enemy.rect().x - render_scroll[0],
-                            enemy.rect().y - render_scroll[1],
-                            enemy.rect().width,
-                            enemy.rect().height
-                        ),
-                        1
-                    )
+                    # pygame.draw.rect(
+                    #     self.display,
+                    #     (0, 255, 0),
+                    #     (
+                    #         enemy.rect().x - render_scroll[0],
+                    #         enemy.rect().y - render_scroll[1],
+                    #         enemy.rect().width,
+                    #         enemy.rect().height
+                    #     ),
+                    #     1
+                    # )
                     if enemy.rect().colliderect(self.player.rect()):
                         if self.player.damage_timer <= 0:
                             self.player.health -= 10

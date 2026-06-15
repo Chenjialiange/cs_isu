@@ -90,19 +90,19 @@ class Enemy:
         if enemy_type == 'fast':
             self.image_key = 'enemy_fast'
             self.size = (19, 29)
-            self.speed = 0.8
+            self.speed = 0.7
             self.max_health = 2
 
         elif enemy_type == 'tank':
             self.image_key = 'enemy_tank'
             self.size = (19, 29)
-            self.speed = 0.4
+            self.speed = 0.2
             self.max_health = 15
 
         else:
             self.image_key = 'enemy'
             self.size = (19, 29)
-            self.speed = 0.4
+            self.speed = 0.3
             self.max_health = 3
 
         self.health = self.max_health
