@@ -1,0 +1,22 @@
+{
+    "tilemap": {},
+    "tile_size": 16,
+    "offgrid": [],
+    "background": {
+        "type": "image",
+        "path": "data/images/background.png",
+        "source_file": "background.png",
+        "pos": [
+            0,
+            0
+        ],
+        "size": [
+            1672,
+            941
+        ],
+        "scale_to": [
+            1280,
+            720
+        ]
+    }
+}
